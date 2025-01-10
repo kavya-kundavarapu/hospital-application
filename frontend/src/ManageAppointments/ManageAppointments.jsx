@@ -8,7 +8,9 @@ export default function ManageAppointments() {
   }, []);
   async function handleConfirm(id) {
     axios
-      .put(`http://localhost:4000/api/appointments/confirm/${id}`)
+      .put(
+        `https://hospital-application-qmps.onrender.com/api/appointments/confirm/${id}`
+      )
       .then((res) => {
         if (res.status === 204) alert("Confirmed");
         fetchAppointments();
@@ -16,19 +18,23 @@ export default function ManageAppointments() {
   }
   async function handleCancel(id) {
     axios
-      .put(`http://localhost:4000/api/appointments/cancel/${id}`)
+      .put(
+        `https://hospital-application-qmps.onrender.com/api/appointments/cancel/${id}`
+      )
       .then((res) => {
         if (res.status === 204) alert("Cancelled");
         fetchAppointments();
       });
   }
   async function fetchAppointments() {
-    axios.get("http://localhost:4000/api/appointments").then((res) => {
-      if (res.status === 200) {
-        console.log(res.data);
-        setAppointments(res.data);
-      }
-    });
+    axios
+      .get("https://hospital-application-qmps.onrender.com/api/appointments")
+      .then((res) => {
+        if (res.status === 200) {
+          console.log(res.data);
+          setAppointments(res.data);
+        }
+      });
   }
   return (
     <div className="container">
